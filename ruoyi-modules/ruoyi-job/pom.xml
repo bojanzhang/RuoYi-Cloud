@@ -16,38 +16,38 @@
     </description>
 
     <dependencies>
-    	
-    	<!-- SpringCloud Ailibaba Nacos -->
+
+        <!-- SpringCloud Ailibaba Nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        
+
         <!-- SpringCloud Ailibaba Nacos Config -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-        
+
         <!-- SpringCloud Ailibaba Sentinel -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
-        
+
         <!-- SpringBoot Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-		
+
         <!-- Swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.fox.version}</version>
         </dependency>
-		
+
         <!-- Quartz -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
@@ -59,31 +59,31 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        
+
         <!-- Mysql Connector -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        
+
         <!-- Ruoyi Common Security-->
         <dependency>
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-common-security</artifactId>
         </dependency>
-        
+
         <!-- Ruoyi Common Log -->
         <dependency>
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-common-log</artifactId>
         </dependency>
-        
+
         <!-- Ruoyi Common Swagger -->
         <dependency>
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-common-swagger</artifactId>
         </dependency>
-        
+
     </dependencies>
 
     <build>
@@ -101,5 +101,5 @@
             </plugin>
         </plugins>
     </build>
-   
+
 </project>

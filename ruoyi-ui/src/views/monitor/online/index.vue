@@ -35,9 +35,9 @@
           <span>{{(pageNum - 1) * pageSize + scope.$index + 1}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="会话编号" align="center" prop="tokenId" :show-overflow-tooltip="true" />
-      <el-table-column label="登录名称" align="center" prop="userName" :show-overflow-tooltip="true" />
-      <el-table-column label="主机" align="center" prop="ipaddr" :show-overflow-tooltip="true" />
+      <el-table-column label="会话编号" align="center" prop="tokenId" :show-overflow-tooltip="true"/>
+      <el-table-column label="登录名称" align="center" prop="userName" :show-overflow-tooltip="true"/>
+      <el-table-column label="主机" align="center" prop="ipaddr" :show-overflow-tooltip="true"/>
       <el-table-column label="登录时间" align="center" prop="loginTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.loginTime) }}</span>
@@ -51,74 +51,75 @@
             icon="el-icon-delete"
             @click="handleForceLogout(scope.row)"
             v-hasPermi="['monitor:online:forceLogout']"
-          >强退</el-button>
+          >强退
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="pageNum" :limit.sync="pageSize" />
+    <pagination v-show="total>0" :total="total" :page.sync="pageNum" :limit.sync="pageSize"/>
   </div>
 </template>
 
 <script>
-import { list, forceLogout } from "@/api/monitor/online";
+    import {forceLogout, list} from "@/api/monitor/online";
 
-export default {
-  name: "Online",
-  data() {
-    return {
-      // 遮罩层
-      loading: true,
-      // 总条数
-      total: 0,
-      // 表格数据
-      list: [],
-      pageNum: 1,
-      pageSize: 10,
-      // 查询参数
-      queryParams: {
-        ipaddr: undefined,
-        userName: undefined
-      }
+    export default {
+        name: "Online",
+        data() {
+            return {
+                // 遮罩层
+                loading: true,
+                // 总条数
+                total: 0,
+                // 表格数据
+                list: [],
+                pageNum: 1,
+                pageSize: 10,
+                // 查询参数
+                queryParams: {
+                    ipaddr: undefined,
+                    userName: undefined
+                }
+            };
+        },
+        created() {
+            this.getList();
+        },
+        methods: {
+            /** 查询登录日志列表 */
+            getList() {
+                this.loading = true;
+                list(this.queryParams).then(response => {
+                    this.list = response.rows;
+                    this.total = response.total;
+                    this.loading = false;
+                });
+            },
+            /** 搜索按钮操作 */
+            handleQuery() {
+                this.pageNum = 1;
+                this.getList();
+            },
+            /** 重置按钮操作 */
+            resetQuery() {
+                this.resetForm("queryForm");
+                this.handleQuery();
+            },
+            /** 强退按钮操作 */
+            handleForceLogout(row) {
+                this.$confirm('是否确认强退名称为"' + row.userName + '"的数据项?', "警告", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning"
+                }).then(function () {
+                    return forceLogout(row.tokenId);
+                }).then(() => {
+                    this.getList();
+                    this.msgSuccess("强退成功");
+                })
+            }
+        }
     };
-  },
-  created() {
-    this.getList();
-  },
-  methods: {
-    /** 查询登录日志列表 */
-    getList() {
-      this.loading = true;
-      list(this.queryParams).then(response => {
-        this.list = response.rows;
-        this.total = response.total;
-        this.loading = false;
-      });
-    },
-    /** 搜索按钮操作 */
-    handleQuery() {
-      this.pageNum = 1;
-      this.getList();
-    },
-    /** 重置按钮操作 */
-    resetQuery() {
-      this.resetForm("queryForm");
-      this.handleQuery();
-    },
-    /** 强退按钮操作 */
-    handleForceLogout(row) {
-      this.$confirm('是否确认强退名称为"' + row.userName + '"的数据项?', "警告", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        }).then(function() {
-          return forceLogout(row.tokenId);
-        }).then(() => {
-          this.getList();
-          this.msgSuccess("强退成功");
-        })
-    }
-  }
-};
 </script>
 

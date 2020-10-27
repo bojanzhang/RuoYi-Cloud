@@ -1,19 +1,17 @@
-package ${packageName}.mapper;
+package ${packageName}import java.util.List;
 
-import java.util.List;
-import ${packageName}.domain.${ClassName};
+.mapper; ${packageName}.domain.${ClassName};
 
 /**
  * ${functionName}Mapper接口
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
-public interface ${ClassName}Mapper 
-{
+public interface ${ClassName}Mapper {
     /**
      * 查询${functionName}
-     * 
+     *
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return ${functionName}
      */
@@ -21,7 +19,7 @@ public interface ${ClassName}Mapper
 
     /**
      * 查询${functionName}列表
-     * 
+     *
      * @param ${className} ${functionName}
      * @return ${functionName}集合
      */
@@ -29,7 +27,7 @@ public interface ${ClassName}Mapper
 
     /**
      * 新增${functionName}
-     * 
+     *
      * @param ${className} ${functionName}
      * @return 结果
      */
@@ -37,7 +35,7 @@ public interface ${ClassName}Mapper
 
     /**
      * 修改${functionName}
-     * 
+     *
      * @param ${className} ${functionName}
      * @return 结果
      */
@@ -45,7 +43,7 @@ public interface ${ClassName}Mapper
 
     /**
      * 删除${functionName}
-     * 
+     *
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return 结果
      */
@@ -53,7 +51,7 @@ public interface ${ClassName}Mapper
 
     /**
      * 批量删除${functionName}
-     * 
+     *
      * @param ${pkColumn.javaField}s 需要删除的数据ID
      * @return 结果
      */
